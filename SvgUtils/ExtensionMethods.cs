@@ -41,6 +41,20 @@ namespace SvgUtils
             return colorServer;
         }
 
+        public static SvgElement WithFill(this SvgElement element, Color color)
+        {
+            element.Fill = color.ToSvg();
+            element.FillOpacity = color.A / 255.0f;
+            return element;
+        }
+
+        public static SvgElement WithStroke(this SvgElement element, Color color, float width)
+        {
+            element.Stroke = color.ToSvg();
+            element.StrokeWidth = width;
+            return element;
+        }
+
         public static Vector3 ToHSV(this Color color)
         {
             int max = Math.Max(color.R, Math.Max(color.G, color.B));

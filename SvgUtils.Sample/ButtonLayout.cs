@@ -1,0 +1,48 @@
+﻿namespace SvgUtils;
+
+public class ButtonLayout
+{
+    public RectHierarchyNode AtlasRect { get; }
+
+    public ButtonLayout(UIConfiguration config, ButtonState state)
+    {
+        float shadowSize = config.MediumPadding;
+        switch (state)
+        {
+            case ButtonState.Selected:
+                shadowSize = config.LargePadding;
+                break;
+            case ButtonState.Pressed:
+                shadowSize = config.SmallPadding;
+                break;
+            case ButtonState.Disabled:
+                shadowSize = 0;
+                break;
+        }
+
+        InnerAreaRect = new RectHierarchyNode(new Padding(1));
+        RoundCornersOffset = new RectHierarchyNode(new Padding(config.ButtonCornerRadius), InnerAreaRect);
+        HighlightRect = new RectHierarchyNode(new Padding(config.MediumPadding, 0, 0, 0), RoundCornersOffset);
+        BottomShadowRect = new RectHierarchyNode(new Padding(0, 0, shadowSize, 0), HighlightRect);
+        StrokeRect = new RectHierarchyNode(new Padding(config.StrokeWidth*0.5f), BottomShadowRect);
+        ShadowRect = new RectHierarchyNode(new Padding(config.StrokeWidth * 0.5f) + new Padding(0, 0, shadowSize, 0), StrokeRect);
+        SpriteRect = new RectHierarchyNode(new Padding(config.LargePadding - shadowSize, 0, config.LargePadding-shadowSize, 0), ShadowRect);
+        AtlasRect = new RectHierarchyNode(new Padding(config.AtlasPadding.Y, config.AtlasPadding.X,
+            config.AtlasPadding.Y, config.AtlasPadding.X), SpriteRect);
+        AtlasRect.EvaluateRects();
+    }
+
+    public RectHierarchyNode SpriteRect { get; set; }
+
+    public RectHierarchyNode InnerAreaRect { get; set; }
+
+    public RectHierarchyNode RoundCornersOffset { get; set; }
+
+    public RectHierarchyNode BottomShadowRect { get; set; }
+
+    public RectHierarchyNode HighlightRect { get; set; }
+
+    public RectHierarchyNode StrokeRect { get; set; }
+
+    public RectHierarchyNode ShadowRect { get; }
+}
