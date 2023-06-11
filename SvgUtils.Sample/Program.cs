@@ -18,6 +18,8 @@ namespace SvgUtils
                 new ButtonBuilder(config, Color.Orange, ButtonState.Selected, "orange-button"),
                 new ButtonBuilder(config, Color.Orange, ButtonState.Pressed, "orange-button"),
                 new ButtonBuilder(config, Color.Orange, ButtonState.Disabled, "orange-button"),
+                new PanelBuilder(config, Color.FromArgb(255,20,22,36), config.InnerPanelCornerRadius, "gray-inner-panel"),
+                new PanelBuilder(config, Color.FromArgb(255,20,22,36), config.OuterPanelCornerRadius, "gray-outer-panel"),
             };
             var imageSize = items.BuildAtlas();
 

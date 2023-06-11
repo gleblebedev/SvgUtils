@@ -24,7 +24,7 @@ public class UIConfiguration
     /// </summary>
     public float MediumPadding { get; set; } = 4;
 
-    public float OuterPanelCornerRadius => OuterPanelCornerRadius * 2;
+    public float OuterPanelCornerRadius => InnerPanelCornerRadius * 2;
     public float InnerPanelCornerRadius => ButtonCornerRadius * 2;
     public float LargePadding => MediumPadding * 2;
     public float SmallPadding => MediumPadding / 2;
