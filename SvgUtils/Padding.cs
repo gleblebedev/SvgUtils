@@ -40,6 +40,12 @@ public struct Padding
         return new Padding(a.Top + b.Top, a.Right + b.Right, a.Bottom + b.Bottom, a.Left + b.Left);
     }
 
+    public static Padding operator *(Padding a, float scale)
+    {
+        return new Padding(a.Top * scale, a.Right * scale, a.Bottom * scale, a.Left * scale);
+    }
+
+
     public override string ToString()
     {
         return $"{Top}px {Right}px {Bottom}px {Left}px";

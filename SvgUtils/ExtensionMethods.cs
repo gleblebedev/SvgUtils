@@ -15,6 +15,11 @@ namespace SvgUtils
             return new Vector2(point.X, point.Y);
         }
 
+        public static Vector2 ToVector2(this PointF point)
+        {
+            return new Vector2(point.X, point.Y);
+        }
+
         public static SvgPoint ToPoint(this Vector2 point, SvgUnitType type = SvgUnitType.User)
         {
             return new SvgPoint()

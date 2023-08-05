@@ -1,10 +1,13 @@
-﻿namespace SvgUtils;
+﻿using System;
 
-public class ButtonLayout
+namespace SvgUtils;
+
+public class CheckboxLayout
 {
-    public ButtonLayout(UIConfiguration config, ButtonState state)
+    public CheckboxLayout(UIConfiguration config, ButtonState state)
     {
         float shadowSize = config.MediumPadding;
+
         switch (state)
         {
             case ButtonState.Selected:
@@ -17,19 +20,18 @@ public class ButtonLayout
                 shadowSize = 0;
                 break;
         }
-
-        InnerAreaRect = new RectHierarchyNode(new Padding(1));
-        RoundCornersOffset = new RectHierarchyNode(new Padding(config.ButtonCornerRadius), InnerAreaRect);
+        InnerAreaRect = new RectHierarchyNode(new Padding(config.FontSize*0.5f));
+        var roundOffset = MathF.Sqrt(2.0f) - 1.0f;
+        RoundCornersOffset = new RectHierarchyNode(InnerAreaRect.Padding * roundOffset, InnerAreaRect);
         HighlightRect = new RectHierarchyNode(new Padding(config.MediumPadding, 0, 0, 0), RoundCornersOffset);
         BottomShadowRect = new RectHierarchyNode(new Padding(0, 0, shadowSize, 0), HighlightRect);
-        StrokeRect = new RectHierarchyNode(new Padding(config.StrokeWidth*0.5f), BottomShadowRect);
+        StrokeRect = new RectHierarchyNode(new Padding(config.StrokeWidth * 0.5f), BottomShadowRect);
         ShadowRect = new RectHierarchyNode(new Padding(config.StrokeWidth * 0.5f) + new Padding(0, 0, shadowSize, 0), StrokeRect);
-        SpriteRect = new RectHierarchyNode(new Padding(config.LargePadding - shadowSize, 0, config.LargePadding-shadowSize, 0), ShadowRect);
+        SpriteRect = new RectHierarchyNode(new Padding(config.LargePadding - shadowSize, 0, config.LargePadding - shadowSize, 0), ShadowRect);
         AtlasRect = new RectHierarchyNode(new Padding(config.AtlasPadding.Y, config.AtlasPadding.X,
             config.AtlasPadding.Y, config.AtlasPadding.X), SpriteRect);
         AtlasRect.EvaluateRects();
     }
-
 
     public RectHierarchyNode InnerAreaRect { get; set; }
 
@@ -46,5 +48,4 @@ public class ButtonLayout
     public RectHierarchyNode SpriteRect { get; set; }
 
     public RectHierarchyNode AtlasRect { get; }
-
 }

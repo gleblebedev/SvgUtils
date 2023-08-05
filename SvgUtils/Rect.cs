@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Drawing.Imaging;
+using System.Numerics;
 
 namespace SvgUtils;
 
@@ -7,6 +8,7 @@ public struct Rect
     public Vector2 Position;
 
     public Vector2 Size;
+
     public Rect(Vector2 position, Vector2 size)
     {
         Position = position;
@@ -73,5 +75,40 @@ public struct Rect
     public override string ToString()
     {
         return $"x:{Position.X}, y:{Position.Y}, w:{Size.X}, h:{Size.Y}";
+    }
+
+    public Rect Union(Rect rect)
+    {
+        var min = Vector2.Min(Position, rect.Position);
+        var max = Vector2.Max(Position+Size, rect.Position+rect.Size);
+        return new Rect(min, max - min);
+    }
+
+    public Rect Union(Vector2 pos)
+    {
+        var min = Vector2.Min(Position, pos);
+        var max = Vector2.Max(Position + Size, pos);
+        return new Rect(min, max - min);
+    }
+
+    public Rect GrowToAspectRatio(float aspectRatio)
+    {
+        if (this.Size.X <= float.Epsilon || this.Size.Y <= float.Epsilon)
+            return this;
+
+        Vector2 scale = Vector2.One;
+        var currentAspectRatio = this.Size.X / this.Size.Y;
+        if (currentAspectRatio > aspectRatio)
+        {
+            scale.Y = currentAspectRatio / aspectRatio;
+        }
+        else
+        {
+            scale.X = aspectRatio / currentAspectRatio;
+        }
+
+        var newSize = Size * scale;
+        var pos = Position - (newSize - Size) * 0.5f;
+        return new Rect(pos, newSize);
     }
 }

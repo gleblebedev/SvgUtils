@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Drawing;
+using System.Numerics;
 
 namespace SvgUtils;
 
@@ -30,6 +31,7 @@ public class UIConfiguration
     public float SmallPadding => MediumPadding / 2;
     public float StrokeWidth { get; set; } = 1;
     
+    public Color FontColor { get; set; } = Color.White;
 
     //public Vector2 MinNinePatchSize { get; set; } = new Vector2(4, 4);
 }

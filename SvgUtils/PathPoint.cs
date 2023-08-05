@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.Numerics;
 using Svg.Pathing;
 
@@ -54,5 +55,17 @@ public struct PathPoint
             return new SvgLineSegment(true, new PointF(offset.X, float.NaN));
         }
         return new SvgLineSegment(true, offset.ToPointF());
+    }
+
+    public override string ToString()
+    {
+        var val = $@"new Vector2({Point.X.ToString(CultureInfo.InvariantCulture)}f, {Point.Y.ToString(CultureInfo.InvariantCulture)}f)";
+        if (!In.HasValue && !Out.HasValue)
+        {
+            return $@"new PathPoint({val})";
+        }
+        var inVal = In.HasValue ? $@"new Vector2({In.Value.X.ToString(CultureInfo.InvariantCulture)}f, {In.Value.Y.ToString(CultureInfo.InvariantCulture)}f)" : "null";
+        var outVal = Out.HasValue ? $@"new Vector2({Out.Value.X.ToString(CultureInfo.InvariantCulture)}f, {Out.Value.Y.ToString(CultureInfo.InvariantCulture)}f)" : "null";
+        return $@"new PathPoint({inVal}, {val}, {outVal})";
     }
 }
