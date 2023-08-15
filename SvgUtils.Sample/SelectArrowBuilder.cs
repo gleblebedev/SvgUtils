@@ -8,11 +8,11 @@ public class SelectArrowBuilder : SvgAtlasItem
 {
     private readonly UIConfiguration _config;
 
-    private Path _arrowPath = new Path(new PathPoint[]
+    private PathSet _arrowPath = new PathSet(new Path( new PathPoint[]
     {
         new PathPoint(new Vector2(0f, 0.052992344f)), new PathPoint(new Vector2(1f, 0.052992344f)),
         new PathPoint(new Vector2(0.5f, 0.94700766f))
-    });
+    }){Closed = true});
 
     public SelectArrowBuilder(UIConfiguration config)
     {

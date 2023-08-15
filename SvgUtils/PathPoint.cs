@@ -32,20 +32,21 @@ public struct PathPoint
 
     public SvgPathSegment BuildSegmentTo(PathPoint target)
     {
-        var offset = target.Point - Point;
         if (Out.HasValue && target.In.HasValue)
         {
-            return new SvgCubicCurveSegment(true, Out.Value.ToPointF(), (offset + target.In.Value).ToPointF(),
-                offset.ToPointF());
+            return new SvgCubicCurveSegment(true, (Out.Value - Point).ToPointF(), (target.In.Value - Point).ToPointF(),
+                (target.Point - Point).ToPointF());
         }
         if (target.In.HasValue)
         {
-            return new SvgQuadraticCurveSegment(true, (offset + target.In.Value).ToPointF(), offset.ToPointF());
+            return new SvgQuadraticCurveSegment(true, (target.In.Value - Point).ToPointF(), (target.Point - Point).ToPointF());
         }
         if (Out.HasValue)
         {
-            return new SvgQuadraticCurveSegment(true, Out.Value.ToPointF(), offset.ToPointF());
+            return new SvgQuadraticCurveSegment(true, (Out.Value - Point).ToPointF(), (target.Point - Point).ToPointF());
         }
+
+        var offset = (target.Point - Point);
         if (MathF.Abs(offset.X) < float.Epsilon)
         {
             return new SvgLineSegment(true, new PointF(float.NaN, offset.Y));

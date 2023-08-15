@@ -16,7 +16,7 @@ public class CheckboxBuilder : SvgAtlasItem
     private readonly string _name;
     private readonly CheckboxLayout _layout;
 
-    private readonly Path _tickPath = new Path(new PathPoint[] { new PathPoint(new Vector2(0.8521457f, 0.10914159f)), new PathPoint(new Vector2(0.92583966f, 0.18330193f)), new PathPoint(new Vector2(1f, 0.25699615f)), new PathPoint(new Vector2(0.36567163f, 0.8908584f)), new PathPoint(new Vector2(0f, 0.52518654f)), new PathPoint(new Vector2(0.14785457f, 0.37733197f)), new PathPoint(new Vector2(0.36567163f, 0.5951493f)), new PathPoint(new Vector2(0.6091418f, 0.35261178f)) });
+    private readonly PathSet _tickPath = new PathSet(new PathPoint[] { new PathPoint(new Vector2(0.8521457f, 0.10914159f)), new PathPoint(new Vector2(0.92583966f, 0.18330193f)), new PathPoint(new Vector2(1f, 0.25699615f)), new PathPoint(new Vector2(0.36567163f, 0.8908584f)), new PathPoint(new Vector2(0f, 0.52518654f)), new PathPoint(new Vector2(0.14785457f, 0.37733197f)), new PathPoint(new Vector2(0.36567163f, 0.5951493f)), new PathPoint(new Vector2(0.6091418f, 0.35261178f)) });
 
     //Path _tickPath = new Path(new PathPoint[] { new PathPoint(new Vector2(0f, 0f)), new PathPoint(new Vector2(1f, 0f)), new PathPoint(new Vector2(0.5f, 1.0f)) });
 
