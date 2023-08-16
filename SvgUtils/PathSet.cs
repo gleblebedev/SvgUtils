@@ -74,7 +74,7 @@ public class PathSet: IEnumerable<Path>
             }
             else if (pathElement is SvgQuadraticCurveSegment quadraticCurveSegment)
             {
-                var controlPoint = quadraticCurveSegment.ControlPoint.ToVector2();
+                var controlPoint = FixNaNs(quadraticCurveSegment.ControlPoint.ToVector2(), lastKnownPoint, quadraticCurveSegment.IsRelative);
                 var end = FixNaNs(quadraticCurveSegment.End.ToVector2(), lastKnownPoint, quadraticCurveSegment.IsRelative);
                 if (quadraticCurveSegment.IsRelative)
                 {
@@ -86,8 +86,8 @@ public class PathSet: IEnumerable<Path>
             }
             else if (pathElement is SvgCubicCurveSegment cubicCurveSegment)
             {
-                var controlPoint1 = cubicCurveSegment.FirstControlPoint.ToVector2();
-                var controlPoint2 = cubicCurveSegment.SecondControlPoint.ToVector2();
+                var controlPoint1 = FixNaNs(cubicCurveSegment.FirstControlPoint.ToVector2(), lastKnownPoint, cubicCurveSegment.IsRelative);
+                var controlPoint2 = FixNaNs(cubicCurveSegment.SecondControlPoint.ToVector2(), lastKnownPoint, cubicCurveSegment.IsRelative);
                 var end = FixNaNs(cubicCurveSegment.End.ToVector2(), lastKnownPoint, cubicCurveSegment.IsRelative);
                 if (cubicCurveSegment.IsRelative)
                 {

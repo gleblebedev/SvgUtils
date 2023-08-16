@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Drawing2D;
+using System.IO;
+using System.Linq;
 using System.Numerics;
 using Svg;
 
@@ -44,6 +46,8 @@ namespace SvgUtils
                 new CheckboxBuilder(config, Color.DodgerBlue, true, ButtonState.Disabled,"blue-checkbox"),
                 new ScrollBuilder(config, Color.DodgerBlue, Color.DodgerBlue, config.ButtonCornerRadius, "blue-slider"),
                 new SelectArrowBuilder(config),
+                new IconBuilder(config, Color.DodgerBlue, IconBuilder.Settings, "icon-settings"),
+                new IconBuilder(config, Color.DodgerBlue, IconBuilder.XBox, "icon-xbox"),
             };
             var imageSize = items.BuildAtlas();
 
