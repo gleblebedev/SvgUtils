@@ -20,8 +20,8 @@ public class ScrollBuilder : SvgAtlasItem
         _sliderColor = sliderColor;
         _radius = radius;
         _name = name;
-        _slidertrack = new PanelLayout(radius, -config.MediumPadding, 0.0f, config.AtlasPadding);
-        _sliderbar = new PanelLayout(radius, config.MediumPadding, 1.0f, config.AtlasPadding);
+        _slidertrack = new PanelLayout(radius, -config.MediumPadding, -config.MediumPadding, 0.0f, config.AtlasPadding);
+        _sliderbar = new PanelLayout(radius, config.MediumPadding, config.MediumPadding, 1.0f, config.AtlasPadding);
         _sliderbar.AtlasRect.MoveBy(new Vector2(_slidertrack.AtlasRect.Rect.Size.X, 0));
         Rect = _slidertrack.AtlasRect.Rect.Union(_sliderbar.AtlasRect.Rect);
     }

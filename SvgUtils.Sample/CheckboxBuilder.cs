@@ -131,12 +131,12 @@ public class CheckboxBuilder : SvgAtlasItem
                 case ButtonState.Selected:
                     spriteName += "-checked-hover";
                     states.Add($"input.{_name}:checked:hover");
-                    states.Add($"input.{_name}:checked:navigated");
+                    states.Add($"input.{_name}:checked:focus-visible");
                     break;
                 case ButtonState.Pressed:
                     spriteName += "-checked-active";
                     states.Add($"input.{_name}:checked:active");
-                    states.Add($"input.{_name}:checked:pressed");
+                    //states.Add($"input.{_name}:checked:pressed");
                     break;
             }
         }
@@ -154,12 +154,12 @@ public class CheckboxBuilder : SvgAtlasItem
                 case ButtonState.Selected:
                     spriteName += "-hover";
                     states.Add($"input.{_name}:hover");
-                    states.Add($"input.{_name}:navigated");
+                    states.Add($"input.{_name}:focus-visible");
                     break;
                 case ButtonState.Pressed:
                     spriteName += "-active";
                     states.Add($"input.{_name}:active");
-                    states.Add($"input.{_name}:pressed");
+                    //states.Add($"input.{_name}:pressed");
                     break;
             }
         }

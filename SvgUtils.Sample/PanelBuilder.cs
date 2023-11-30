@@ -12,17 +12,21 @@ public class PanelBuilder : SvgAtlasItem
     private readonly PanelLayout _layout;
     private readonly float _radius;
 
-    public PanelBuilder(UIConfiguration config, Color color, float radius, string name = "panel")
+    public PanelBuilder(UIConfiguration config, Color color, float radius, PanelLayout layout, string name = "panel")
     {
         _config = config;
         _color = color;
         _name = name;
         _radius = radius;
+        _layout = layout;
 
-
-        _layout = new PanelLayout(radius, config.SmallPadding, config.StrokeWidth, config.AtlasPadding);
         Rect = _layout.AtlasRect.Rect;
     }
+
+    public PanelBuilder(UIConfiguration config, Color color, float radius, string name = "panel"): this(config, color, radius, new PanelLayout(radius, config.SmallPadding, config.SmallPadding, config.StrokeWidth, config.AtlasPadding), name)
+    {
+    }
+
     public override void Build(ThemeBuilder themeBuilder)
     {
         _layout.AtlasRect.MoveBy(Rect.Position);

@@ -15,7 +15,7 @@ public class PanelLayout
     public RectHierarchyNode ShadowRect { get; }
     public RectHierarchyNode AtlasRect { get; }
 
-    public PanelLayout(float cornerRadius, float shadowWidth, float strokeWidth, Vector2 atlasPadding)
+    public PanelLayout(float cornerRadius, float shadowWidth, float outerShadowWidth, float strokeWidth, Vector2 atlasPadding)
     {
         var radius = cornerRadius;
         InnerRect = new RectHierarchyNode(new Padding(1));
@@ -31,7 +31,7 @@ public class PanelLayout
             BottomShadowRect = new RectHierarchyNode(new Padding(-shadowWidth, 0, 0, 0), HighlightRect);
         }
         StrokeRect = new RectHierarchyNode(new Padding(strokeWidth * 0.5f), BottomShadowRect);
-        ShadowRect = new RectHierarchyNode(new Padding(strokeWidth * 0.5f) + new Padding(0, 0,  MathF.Max(0.0f, shadowWidth), 0), StrokeRect);
+        ShadowRect = new RectHierarchyNode(new Padding(strokeWidth * 0.5f) + new Padding(0, 0,  MathF.Max(0.0f, outerShadowWidth), 0), StrokeRect);
         AtlasRect = new RectHierarchyNode(new Padding(atlasPadding.Y, atlasPadding.X,
             atlasPadding.Y, atlasPadding.X), ShadowRect);
         AtlasRect.EvaluateRects();

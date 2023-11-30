@@ -82,16 +82,16 @@ public class ButtonBuilder: SvgAtlasItem
             case ButtonState.Selected:
                 spriteName += "-hover";
                 states.Add($"input.{_name}:hover");
-                states.Add($"input.{_name}:navigated");
+                states.Add($"input.{_name}:focus-visible");
                 states.Add($"select.{_name}:hover");
-                states.Add($"select.{_name}:navigated");
+                states.Add($"select.{_name}:focus-visible");
                 break;
             case ButtonState.Pressed:
                 spriteName += "-active";
                 states.Add($"input.{_name}:active");
-                states.Add($"input.{_name}:pressed");
+                //states.Add($"input.{_name}:pressed");
                 states.Add($"select.{_name}:active");
-                states.Add($"select.{_name}:pressed");
+                //states.Add($"select.{_name}:pressed");
                 break;
         }
         themeBuilder.AddThemeSprite(spriteName, _layout.SpriteRect.Rect);

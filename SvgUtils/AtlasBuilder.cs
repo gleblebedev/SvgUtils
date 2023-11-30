@@ -53,13 +53,19 @@ public static class AtlasBuilder
             totalArea += sortedItem.Rect.Area;
         }
 
-        var side = GetNextPow2((int)Math.Sqrt(totalArea));
-        while (!FitItems(new Rect(new Vector2(side,side)), sortedItems))
+        var sidex = GetNextPow2((int)Math.Sqrt(totalArea));
+        var sidey = sidex;
+        var growx = true;
+        while (!FitItems(new Rect(new Vector2(sidex,sidey)), sortedItems))
         {
-            side *= 2;
+            if (growx)
+                sidex *= 2;
+            else
+                sidey *= 2;
+            growx = !growx;
         }
 
-        return new Rect(new Vector2(side, side));
+        return new Rect(new Vector2(sidex, sidey));
     }
 
     public static bool BuildAtlas<T>(this IEnumerable<T> items, Rect area) where T : IAtlasItem

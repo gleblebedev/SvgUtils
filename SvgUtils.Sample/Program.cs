@@ -35,6 +35,8 @@ namespace SvgUtils
                 new ButtonBuilder(config, Color.Orange, ButtonState.Disabled, "orange-button"),
                 new PanelBuilder(config, Color.FromArgb(255,20,22,36), config.InnerPanelCornerRadius, "gray-inner-panel"),
                 new PanelBuilder(config, Color.FromArgb(255,20,22,36), config.OuterPanelCornerRadius, "gray-outer-panel"),
+                new PanelBuilder(config, Color.FromArgb(255,20,22,36), 0, "gray-header-panel"),
+                new PanelBuilder(config, Color.FromArgb(255,20,22,36), 0, new PanelLayout(0, config.SmallPadding, 0, config.StrokeWidth, config.AtlasPadding), "gray-footer-panel"),
                 new ScrollBuilder(config, Color.Gray, Color.DarkGray, config.ButtonCornerRadius*0.5f),
                 new CheckboxBuilder(config, Color.DodgerBlue, false, ButtonState.Normal,"blue-checkbox"),
                 new CheckboxBuilder(config, Color.DodgerBlue, false, ButtonState.Selected,"blue-checkbox"),
@@ -46,8 +48,12 @@ namespace SvgUtils
                 new CheckboxBuilder(config, Color.DodgerBlue, true, ButtonState.Disabled,"blue-checkbox"),
                 new ScrollBuilder(config, Color.DodgerBlue, Color.DodgerBlue, config.ButtonCornerRadius, "blue-slider"),
                 new SelectArrowBuilder(config),
+                
+                new IconBuilder(config, Color.DodgerBlue, IconBuilder.Diamond, "icon-diamond"),
+                new IconBuilder(config, Color.DodgerBlue, IconBuilder.Money, "icon-money"),
                 new IconBuilder(config, Color.DodgerBlue, IconBuilder.Settings, "icon-settings"),
                 new IconBuilder(config, Color.DodgerBlue, IconBuilder.XBox, "icon-xbox"),
+                new IconBuilder(config, Color.DodgerBlue, IconBuilder.Discord, "icon-discord"),
             };
             var imageSize = items.BuildAtlas();
 
