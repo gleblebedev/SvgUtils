@@ -111,6 +111,7 @@ public class PathSet: IEnumerable<Path>
                     }
                 }
                 path.Closed = true;
+                lastKnownPoint = path.First().Point;
             }
             else
             {
@@ -130,12 +131,20 @@ public class PathSet: IEnumerable<Path>
     {
         var data = new SvgPathSegmentList();
 
-        foreach (var pathPath in path._paths)
+        for (var i = 0; i < path._paths.Count; i++)
         {
+            var pathPath = path._paths[i];
             if (pathPath.Count == 0)
                 break;
 
-            data.Add(new SvgMoveToSegment(false, pathPath[0].Point.ToPointF()) );
+            //if (i > 0 && path._paths[i - 1].Count > 0)
+            //{
+            //    data.Add(new SvgMoveToSegment(true, (pathPath[0].Point - path._paths[i - 1].Last().Point).ToPointF()));
+            //}
+            //else
+            {
+                data.Add(new SvgMoveToSegment(false, pathPath[0].Point.ToPointF()));
+            }
 
             for (int index = 0; index < pathPath.Count - 1; ++index)
             {
@@ -149,10 +158,11 @@ public class PathSet: IEnumerable<Path>
                 {
                     data.Add(lastSegment);
                 }
+
                 data.Add(new SvgClosePathSegment(true));
             }
         }
-        
+
         return new SvgPath() { PathData = data };
     }
 
